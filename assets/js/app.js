@@ -66,8 +66,8 @@ function createPlayList() {
         h3.innerText = song.name;
         li.addEventListener('click', () => {
             songIndex = index;
-            loadMusic();
-            playSong();
+            isPlaying = false;
+            loadMusic(song).then(() => playSong());
         });
         append(li,h3);
         append(ul,li)
@@ -80,10 +80,16 @@ let songIndex = 0;
 loadMusic(songList[songIndex]);
 
 
-function loadMusic() {
-    coverArt.src = songList[songIndex].cover;
-    songName.innerText = songList[songIndex].name;
-    audio.src = songList[songIndex].source;
+function loadMusic(song) {
+    return new Promise((resolve) => {
+        coverArt.src = song.cover;
+        songName.innerText = song.name;
+        audio.src = song.source;
+        console.log(audio.currentTime)
+        audio.onloadeddata = () => {
+            resolve();
+        };
+    });
 }
 
 function playSong() {
@@ -107,8 +113,8 @@ function nextPlay() {
     if(songIndex > songList.length - 1) {
         songIndex = 0;
     }
-    loadMusic(songList[songIndex]);
-    playSong()
+    isPlaying = false;
+    loadMusic(songList[songIndex]).then(() => playSong());
 }
 
 function backPlay() {
@@ -116,8 +122,9 @@ function backPlay() {
     if(songIndex < 0) {
         songIndex = songList.length - 1;
     }
-    loadMusic(songList[songIndex]);
-    playSong()
+    isPlaying = false;
+    loadMusic(songList[songIndex]).then(() => playSong());
+
 }
 function playHandler() {
     isPlaying = !isPlaying;
