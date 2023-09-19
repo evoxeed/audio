@@ -7,22 +7,25 @@
 :root {
     --white-color: #ffffff;
 }
+html {
+    min-height: 100%;
+}
 body {
     font-family: 'Josefin Sans', sans-serif;
     width: 100%;
       background-image: linear-gradient(
-          to right bottom, 
-          #118ab2, 
-          #0e92b9, 
-          #0b99c1, 
+          to right bottom,
+          #118ab2,
+          #0e92b9,
+          #0b99c1,
           #07a1c8,
-          #03a9cf, 
+          #03a9cf,
           #37b0d8,
-          #51b8e1, 
-          #66bfe9, 
-          #8cc7f2, 
+          #51b8e1,
+          #66bfe9,
+          #8cc7f2,
           #accff8,
-          #c7d8fc, 
+          #c7d8fc,
           #dee2ff
     );
 }
@@ -113,7 +116,7 @@ ul li a:hover {
     display: flex;
     border: 3px solid #37b0d8;
     border-top: 3px solid #0254ec;
-   
+
 }
 .circle2 {
     width: 180px;
@@ -125,7 +128,7 @@ ul li a:hover {
     align-self: center;
     display: flex;
     margin: auto;
-    
+
 }
 .circle2 .fluid-img{
     width: 100%;
