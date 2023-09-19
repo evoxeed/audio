@@ -58,12 +58,17 @@ function append(parent, child) {
 // creating track list
 const ul = createEle('ul')
 function createPlayList() {
-    songList.forEach((song) => {
+    songList.forEach((song, index) => {
         let h3 = createEle('h3');
         let li = createEle('li');
 
         li.classList.add("track-item");
         h3.innerText = song.name;
+        li.addEventListener('click', () => {
+            songIndex = index;
+            loadMusic();
+            playSong();
+        });
         append(li,h3);
         append(ul,li)
     })
@@ -116,12 +121,11 @@ function backPlay() {
 }
 function playHandler() {
     isPlaying = !isPlaying;
-    //console.log("Change: ",isPlaying)
     isPlaying ? pauseSong() : playSong();
 }
 
 
-// player event 
+// player event
 playPause.addEventListener("click", playHandler);
 backward.addEventListener("click", backPlay);
 forward.addEventListener("click", nextPlay);

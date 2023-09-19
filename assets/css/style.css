@@ -65,9 +65,14 @@ h1, h2, h3, h4, h5, h6 {
 .musicbox {
     margin-top: 1rem;
 }
-.musicbox ul li h3{
+.musicbox ul li h3 {
     color: #15253a;
+    transition: color .3s;
     font-weight: 400;
+    cursor: pointer;
+}
+.musicbox ul li h3:hover {
+    color: var(--white-color);
 }
 .hor {
     margin: 1rem 0 1rem 0;
@@ -148,6 +153,7 @@ ul li a:hover {
 .circle2.animate {
     animation: clockwise 6s infinite linear;
 }
+
 .media-btn {
     width: 100%;
     max-width: 50px;
