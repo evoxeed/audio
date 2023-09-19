@@ -2,7 +2,8 @@
 const playPause = document.querySelector("#play-stop");
 const backward = document.querySelector("#backward");
 const forward = document.querySelector("#forward");
-
+let importButton = document.querySelector("#importButton")
+let importInput = document.querySelector("#importInput")
 // record player animation
 const circleBig = document.querySelector("#circle-bg");
 const circleSm = document.querySelector("#circle-sm");
@@ -64,10 +65,12 @@ function createPlayList() {
 
         li.classList.add("track-item");
         h3.innerText = song.name;
+        li.setAttribute('id', 'track-' + index);
         li.addEventListener('click', () => {
             songIndex = index;
             isPlaying = false;
             loadMusic(song).then(() => playSong());
+            markTrack(songIndex);
         });
         append(li,h3);
         append(ul,li)
@@ -79,13 +82,21 @@ let songIndex = 0;
 // preloaded song
 loadMusic(songList[songIndex]);
 
-
+function markTrack(activeIndex) {
+    let prevActive = document.querySelector('.active-track');
+    if(prevActive) {
+        prevActive.classList.remove('active-track');
+    }
+    let activeTrack = document.querySelector('#track-' + activeIndex);
+    if (activeTrack) {
+        activeTrack.classList.add('active-track');
+    }
+}
 function loadMusic(song) {
     return new Promise((resolve) => {
         coverArt.src = song.cover;
         songName.innerText = song.name;
         audio.src = song.source;
-        console.log(audio.currentTime)
         audio.onloadeddata = () => {
             resolve();
         };
@@ -115,6 +126,7 @@ function nextPlay() {
     }
     isPlaying = false;
     loadMusic(songList[songIndex]).then(() => playSong());
+    markTrack(songIndex);
 }
 
 function backPlay() {
@@ -124,17 +136,48 @@ function backPlay() {
     }
     isPlaying = false;
     loadMusic(songList[songIndex]).then(() => playSong());
-
+    markTrack(songIndex);
 }
 function playHandler() {
     isPlaying = !isPlaying;
     isPlaying ? pauseSong() : playSong();
 }
 
+importButton.addEventListener('click', () => {
+    importInput.click();
+});
+
+const removeExtension = filename => filename.slice(0, filename.lastIndexOf("."));
+
+importInput.addEventListener('change', () => {
+    let selectedFile = importInput.files[0];
+    if (!selectedFile) {
+        console.error('Файл не найден');
+        return;
+    }
+    let songUrl = URL.createObjectURL(selectedFile); // Создаем ссылку на тот самый файл
+
+    // Добавляем песню в список песен
+    let importedSong = {
+        name: removeExtension(selectedFile.name),
+        source: songUrl, // используем созданную ссылку в качестве источника песни
+        cover: './assets/images/default.jpg' // можно установить изображение по умолчанию
+    };
+    songList.push(importedSong);
+
+    // Очищаем и пересоздаем список песен с добавленной песней
+    ul.innerHTML = '';
+    createPlayList();
+    importInput.value = '';
+});
+
 
 // player event
 playPause.addEventListener("click", playHandler);
 backward.addEventListener("click", backPlay);
 forward.addEventListener("click", nextPlay);
+// Переключает к следующему треку после окончания текущего
+audio.addEventListener("ended", nextPlay);
 
 createPlayList()
+markTrack(songIndex);
