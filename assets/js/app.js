@@ -2,8 +2,10 @@
 const playPause = document.querySelector("#play-stop");
 const backward = document.querySelector("#backward");
 const forward = document.querySelector("#forward");
-let importButton = document.querySelector("#importButton")
-let importInput = document.querySelector("#importInput")
+const importButton = document.querySelector("#importButton")
+const importInput = document.querySelector("#importInput")
+const volumeControl = document.querySelector("#volume");
+const volumeImage = document.querySelector("#volumeImage");
 // record player animation
 const circleBig = document.querySelector("#circle-bg");
 const circleSm = document.querySelector("#circle-sm");
@@ -17,6 +19,8 @@ const musicbox = document.querySelector("#musicbox");
 // control button images
 let playImg = "./assets/images/play.svg";
 let pauseImg = "./assets/images/pause.svg";
+let volumeImg = "./assets/images/volume.png";
+let notVolumeImg = "./assets/images/not-volume.png";
 
 // default controls
 playPause.src = playImg;
@@ -24,29 +28,29 @@ let isPlaying = true;
 
 const songList = [
     {
-        name: "Travel Love Beats",
-        source: "./assets/music/Travel Love Beats.mp3",
-        cover: "./assets/images/chillhop.jpg"
+        name: "Jingle Bell Rock",
+        source: "./assets/music/Jingle Bell Rock.mp3",
+        cover: "./assets/images/pic1.jpg"
     },
     {
-        name: "Night Sky Unreated",
-        source: "./assets/music/Night Sky.mp3",
-        cover: "./assets/images/chillhop-2.jpg"
+        name: "Happy New Year",
+        source: "./assets/music/Happy New Year.mp3",
+        cover: "./assets/images/pic2.jpg"
     },
     {
-        name: "Be a Music",
-        source: "./assets/music/Be a Music.mp3",
-        cover: "./assets/images/chillhop-3.jpg"
+        name: "Last Christmas!",
+        source: "./assets/music/Last Christmas.mp3",
+        cover: "./assets/images/pic3.jpg"
     },
     {
-        name: "Slow Day",
-        source: "./assets/music/Slow Day.mp3",
-        cover: "./assets/images/chillhop-4.jpg"
+        name: "Let It Snow!",
+        source: "./assets/music/Let It Snow!.mp3",
+        cover: "./assets/images/pic4.jpg"
     },
     {
-        name: "Carti Mangolia",
-        source: "./assets/music/Carti mangolia.mp3",
-        cover: "./assets/images/chillhop-2.jpg"
+        name: "Песенка о медведях",
+        source: "./assets/music/Песенка о медведях.mp3",
+        cover: "./assets/images/pic5.jpg"
     }
 ];
 // helper function
@@ -178,6 +182,14 @@ backward.addEventListener("click", backPlay);
 forward.addEventListener("click", nextPlay);
 // Переключает к следующему треку после окончания текущего
 audio.addEventListener("ended", nextPlay);
+volumeControl.addEventListener("input", function() {
+    if (this.value === '0') {
+        volumeImage.src = notVolumeImg
+    } else {
+        volumeImage.src = volumeImg
+    }
+    audio.volume = this.value;
+}, false);
 
 createPlayList()
 markTrack(songIndex);

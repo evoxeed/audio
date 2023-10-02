@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zen Lofi | Beats</title>
+    <title>Новогодний плеер</title>
     <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
     <meta name="keywords" content="HTML, Javascript, CSS, Codeer, 100DayOfCode."/>
     <meta name="description" content="Music Player built with Vanilla Javascript."/>
@@ -14,30 +14,33 @@
 <section id="home">
     <div class="container">
         <div class="collection">
-            <h1 class="heading">Zen Lofi Chillhop</h1>
-            <p class="lead">Chill-out is a loosely defined form of popular music characterized by slow tempos and
-                relaxed moods. Identified as a modern type of easy listening.</p>
+            <h1 class="heading">Новогодний плеер</h1>
+            <p class="lead">Расслабьтесь под нашу чудесную подборку новогодних композиций и погрузитесь в волшебную атомсферу праздника снега и подарков.</p>
             <hr class="hor">
             <div id="musicbox" class="musicbox">
-                <h2>Chillhop Playlist</h2>
+                <h2>New Year Playlist</h2>
             </div>
-            <input id="importInput" type="file" accept="audio">
-            <button id="importButton">Добавить песню</button>
+            <input id="importInput" type="file" accept="audio/mp3">
+            <button class="addTrack" id="importButton">Добавить песню</button>
         </div>
 
         <div class="playbox">
-            <h1 class="heading">Zen Lofi Player</h1>
+            <h1 class="heading">Christmas Player</h1>
             <div class="controller">
                 <div id="circle-bg" class="circle">
                     <div id="circle-sm" class="circle2"><img id="cover" src="" class="fluid-img"></div>
                 </div>
                 <div class="songs">
-                    <h2 id="song-name">Travel love Beats</h2>
+                    <h2 id="song-name"></h2>
                     <div class="controls">
                         <audio id="audio" src=""></audio>
                         <img id="backward" class="media-btn" src="./assets/images/backward-button.png">
                         <img id="play-stop" class="media-btn">
                         <img id="forward" class="media-btn" src="./assets/images/fast-forward.png">
+                    </div>
+                    <div class="volume-control">
+                        <img id="volumeImage" src="./assets/images/volume.png">
+                        <input type="range" id="volume" min="0" max="1" step="0.01" value="1">
                     </div>
                 </div>
             </div>
