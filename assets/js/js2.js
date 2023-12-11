@@ -18,8 +18,7 @@ const EXT_tracks = [
 window.addEventListener("DOMContentLoaded", function () {
     initializeTracks();
     const audioPlayer = document.getElementsByTagName("audio")[0];
-    const volumeContainer = document.getElementById('volumeContainer');
-    const volumeBar = volumeContainer.querySelector('.volume-bar');
+    const volumeControl = document.getElementById('volumeControl');
     const progressContainer = document.getElementById('progress');
     const progressBar = progressContainer.querySelector('.progress-bar');
     const currentTimeDisplay = document.getElementById('currentTime');
@@ -45,8 +44,8 @@ window.addEventListener("DOMContentLoaded", function () {
         playBtn.textContent = 'Играть';
     });
 
-    audioPlayer.addEventListener('volumechange', function () {
-        volumeBar.style.height = (audioPlayer.volume * 100) + '%';
+    volumeControl.addEventListener('input', function () {
+        audioPlayer.volume = this.value;
     }, false);
 
     audioPlayer.addEventListener('loadedmetadata', function() {
@@ -68,13 +67,6 @@ window.addEventListener("DOMContentLoaded", function () {
         let x = e.clientX - rect.left;
         let ratio = x / rect.width;
         audioPlayer.currentTime = ratio * audioPlayer.duration;
-    });
-
-    volumeContainer.addEventListener('click', function(e) {
-        let rect = volumeContainer.getBoundingClientRect();
-        let y = e.clientY - rect.top;
-        let ratio = y / rect.height;
-        audioPlayer.volume = 1 - ratio;
     });
 
     audioPlayer.play()
