@@ -18,15 +18,13 @@ const EXT_tracks = [
 window.addEventListener("DOMContentLoaded", function () {
     initializeTracks();
     const audioPlayer = document.getElementsByTagName("audio")[0];
-    const volumeControl = document.getElementById('volumeControl');
-    const playProgress = document.getElementById('progressBar');
+    const volumeContainer = document.getElementById('volumeContainer');
+    const volumeBar = volumeContainer.querySelector('.volume-bar');
+    const progressContainer = document.getElementById('progress');
+    const progressBar = progressContainer.querySelector('.progress-bar');
     const currentTimeDisplay = document.getElementById('currentTime');
     const totalDurationDisplay = document.getElementById('totalDuration');
     const playBtn = document.getElementById('playBtn');
-
-    playProgress.min = 0;
-    playProgress.value = 0;
-    playProgress.step = 0.01;
 
     audioPlayer.src = audioTracks[trackNumber];
     audioPlayer.volume = 0.4;
@@ -47,28 +45,36 @@ window.addEventListener("DOMContentLoaded", function () {
         playBtn.textContent = 'Играть';
     });
 
-    volumeControl.addEventListener('input', function () {
-        audioPlayer.volume = this.value;
+    audioPlayer.addEventListener('volumechange', function () {
+        volumeBar.style.height = (audioPlayer.volume * 100) + '%';
     }, false);
 
     audioPlayer.addEventListener('loadedmetadata', function() {
         if (isNaN(audioPlayer.duration)) {
             totalDurationDisplay.textContent = "00:00";
-            playProgress.max = 1;
         } else {
             totalDurationDisplay.textContent = formatSeconds(audioPlayer.duration);
-            playProgress.max = audioPlayer.duration;
         }
         audioPlayer.play();
     });
 
     audioPlayer.addEventListener('timeupdate', function() {
         currentTimeDisplay.textContent = formatSeconds(audioPlayer.currentTime);
-        playProgress.value = audioPlayer.currentTime;
+        progressBar.style.width = ((audioPlayer.currentTime / audioPlayer.duration) * 100) + '%';
     });
 
-    playProgress.addEventListener('change', function() {
-        audioPlayer.currentTime = playProgress.value;
+    progressContainer.addEventListener('click', function(e) {
+        let rect = progressContainer.getBoundingClientRect();
+        let x = e.clientX - rect.left;
+        let ratio = x / rect.width;
+        audioPlayer.currentTime = ratio * audioPlayer.duration;
+    });
+
+    volumeContainer.addEventListener('click', function(e) {
+        let rect = volumeContainer.getBoundingClientRect();
+        let y = e.clientY - rect.top;
+        let ratio = y / rect.height;
+        audioPlayer.volume = 1 - ratio;
     });
 
     audioPlayer.play()

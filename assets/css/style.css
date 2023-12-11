@@ -1,322 +1,93 @@
-@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600&display=swap');
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    text-shadow:
-    1px 1px 2px blue,
-    0 0 1em rgb(0, 247, 255),
-    0 0 0.2em rgb(0, 247, 255);
+.audio {
+    border: 2px solid #ff0000;
+    background-color: #005900;
+    color: #ffffff;
+    padding: 20px;
+    border-radius: 15px;
 }
 
-:root {
-    --white-color: #ffffff;
-}
-
-html {
-    min-height: 100%;
-}
-
-body {
-    font-family: 'Palatino Linotype', sans-serif;
-    width: 100%;
-    background-image: url(../images/1675439110_top-fon-com-p-fon-dlya-prezentatsii-goluboi-so-snezhinka-65.jpg);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: bottom;
-    background-size: cover;
-}
-
-.container {
-    max-width: 1200px;
-    margin: auto;
-    padding: 0 1rem;
-}
-
-h1, h2, h3, h4, h5, h6 {
-    font-weight: 300;
-    color: var(--white-color);
-    margin: 1rem 0 1rem 0;
-}
-
-.heading {
-    font-size: 32px;
-}
-
-#importInput {
-    display: none;
-}
-
-/* end common style */
-
-#home .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    flex-direction: row;
-}
-
-.collection {
-    width: 50%;
-    flex: 1;
-    margin-top: 1.5rem;
-}
-
-.lead {
-    max-width: 600px;
-    font-weight: 400;
-    color: white;
-    letter-spacing: 0.5px;
-    line-height: 1.2rem;
-}
-
-h2{
-    color: white;
-    text-shadow:
-    1px 1px 2px blue,
-    0 0 1em rgb(0, 247, 255),
-    0 0 0.2em rgb(0, 247, 255);
-}
-
-.musicbox {
-    margin-top: 1rem;
-}
-
-.musicbox ul li h3 {
-    color: white;
-    transition: color .3s;
-    font-weight: 400;
-    cursor: pointer;
-}
-
-.musicbox ul li.active-track h3 {
-    color: #8579c7;
-    text-shadow:
-    1px 1px 2px blue,
-    0 0 1em rgb(0, 247, 255),
-    0 0 0.2em rgb(0, 247, 255);
-}
-
-.musicbox ul li:not(.active-track) h3:hover {
-    color: #2d2d8e;
-    text-shadow:
-    1px 1px 2px blue,
-    0 0 1em rgb(0, 247, 255),
-    0 0 0.2em rgb(0, 247, 255);
-}
-
-.volume-control {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 15px;
-}
-
-.volume-control input {
-    width: 100%;
-}
-
-.volume-control img {
-    filter: invert(1);
-    margin-right: 10px;
-    width: 24px;
-    height: 24px;
-}
-
-.hor {
-    margin: 1rem 0 1rem 0;
-    max-width: 500px;
-    background-color: #e2fdfd9f;
-}
-
-.playbox {
-    flex: 1;
-    margin: 0.5rem auto;
-    text-align: center;
-    border-radius: 8px;
-    background-color: #97fccc27;
-    backdrop-filter: blur(5px);
-}
-
-.playbox .heading {
-    margin: 2.5rem 0 0;
-}
-
-nav {
-    display: block;
-    margin: 3rem auto;
-}
-
-ul li {
-    list-style: none;
-    display: inline;
-    margin: 1rem;
-    padding: 1rem;
-}
-
-ul li a {
-    text-decoration: none;
-    padding: 8px 15px;
+.audio button {
+    background-color: #ff0000;
+    color: #ffffff;
+    border: none;
+    padding: 10px;
     border-radius: 5px;
-    color: var(--white-color);
-    transition: all 300ms;
-}
-
-ul li a:hover {
-    background-color: #c7d8fc8c;
-}
-
-.controller {
-    margin: 2.5rem auto;
-    width: 100%;
-    max-width: 400px;
-}
-
-.circle {
-    width: 250px;
-    height: 250px;
-    background-color: #222427;
-    border-radius: 50%;
-    margin: 2rem auto;
-    display: flex;
-    border: 4px solid #37b0d8;
-    border-top: 4px solid #0254ec;
-
-}
-
-.circle2 {
-    width: 180px;
-    height: 180px;
-    background-color: #252629;
-    border-radius: 50%;
-    border: 3px solid #282529;
-    border-top: 3px solid #66bfe9;
-    align-self: center;
-    display: flex;
-    margin: auto;
-
-}
-
-.circle2 .fluid-img {
-    width: 100%;
-    max-width: 160px;
-    height: auto;
-    border-radius: 50%;
-    align-self: center;
-    margin: auto;
-}
-
-
-#song-name {
-    color: white;
-    font-weight: 400;
-}
-
-.circle.animate {
-    animation: anticlock 6s infinite linear;
-}
-
-.circle2.animate {
-    animation: clockwise 6s infinite linear;
-}
-
-.media-btn {
-    width: 100%;
-    max-width: 50px;
-    height: auto;
+    margin: 5px;
     cursor: pointer;
-    margin: 1rem;
-    transition: transform .3s;
 }
 
-.media-btn:active {
-    transform: scale(1.1)
-}
-/* CSS */
-.addTrack {
-  background-color: #66bfe95a;
-  border-radius: 8px;
-  border-width: 0;
-  color: white;
-  cursor: pointer;
-  display: inline-block;
-  font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 20px;
-  list-style: none;
-  margin: 0;
-  padding: 10px 12px;
-  text-align: center;
-  transition: all 200ms;
-  vertical-align: baseline;
-  white-space: nowrap;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  text-shadow:
-    1px 1px 2px blue,
-    0 0 1em rgb(0, 247, 255),
-    0 0 0.2em rgb(0, 247, 255);
-}
-@keyframes anticlock {
-    from {
-        transform: rotate(360deg);
-    }
-    to {
-        transform: rotate(0deg);
-    }
+.audio button:hover {
+    background-color: #cc0000;
 }
 
-@keyframes clockwise {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+.audio button:hover {
+    background-color: #cc0000;
 }
 
-@media (max-width: 900px) {
-    #home .container {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        flex-direction: column-reverse;
-    }
-
-    .collection {
-        width: 90%;
-        flex: 1;
-        margin: 1.5rem auto;
-    }
-
-    .playbox {
-        flex: 1;
-        width: 90%;
-    }
+#customAudioPlayer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center; /* To align items vertically */
+    position: relative;
 }
 
-.card-body {
+#volumeContainer {
+    position: relative;
+    height: 30px;
+    width: 50px; /* Adjust to match width of icon */
+}
+
+#sliderContainer {
+    position: absolute;
+    right: 0;
+    bottom: 100%; /* Position slider above icon */
+    width: 100px;
+    opacity: 0;
+    transition: 0.5s all;
+}
+
+#volumeContainer:hover #sliderContainer {
+    opacity: 1;
+}
+
+#volumeIcon {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    z-index: 1;
+    filter: invert(100%);
+
+}
+
+#volumeControl {
     width: 100%;
-    max-width: 550px;
-    min-height: 100vh;
-    background-color: #c7d8fc8c;
-    margin: 1rem auto;
-    border-radius: 8px;
 }
 
-.card-body nav {
-    margin: 0;
-    padding-top: 2rem;
-    text-align: center;
+#playBtn {
+    font-size: 18px;
 }
 
-.card-body .about {
-    padding: 1rem;
+#progress {
+    width: 100%;
+    height: 10px;
+    border-radius: 10px;
+    background-color: #ddd;
+    position: relative;
+    margin: 0 10px;
+    border: 1px solid grey;
 }
-
-.about .center {
-    text-align: center;
+#progress .progress-bar {
+    height: 100%;
+    border-radius: 10px;
+    position: absolute;
+    background-image: repeating-linear-gradient(
+            135deg,
+            green,
+            green 10px,
+            white 10px,
+            white 20px,
+            red 20px,
+            red 30px
+    );
 }

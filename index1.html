@@ -3,83 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <style>
-        .audio {
-            border: 2px solid #ff0000;
-            background-color: #005900;
-            color: #ffffff;
-            padding: 20px;
-            border-radius: 15px;
-        }
-
-        .audio button {
-            background-color: #ff0000;
-            color: #ffffff;
-            border: none;
-            padding: 10px;
-            border-radius: 5px;
-            margin: 5px;
-            cursor: pointer;
-        }
-
-        .audio button:hover {
-            background-color: #cc0000;
-        }
-
-        .audio button:hover {
-            background-color: #cc0000;
-        }
-
-        #customAudioPlayer {
-            display: flex;
-            justify-content: flex-end;
-            align-items: center; /* To align items vertically */
-            position: relative;
-        }
-
-        #volumeContainer {
-            position: relative;
-            height: 30px;
-            width: 50px; /* Adjust to match width of icon */
-        }
-
-        #sliderContainer {
-            position: absolute;
-            right: 0;
-            bottom: 100%; /* Position slider above icon */
-            width: 100px;
-            opacity: 0;
-            transition: 0.5s all;
-        }
-
-        #volumeContainer:hover #sliderContainer {
-            opacity: 1;
-        }
-
-        #volumeIcon {
-            position: absolute;
-            right: 0;
-            bottom: 0;
-            height: 100%;
-            z-index: 1;
-            filter: invert(100%);
-
-        }
-
-        #volumeControl {
-            width: 100%;
-        }
-
-        #playBtn {
-            font-size: 18px;
-        }
-
-        #progressBar {
-            flex-grow: 1;
-            margin: 0 10px;
-        }
-
-    </style>
+    <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <body>
 <fieldset class="audio">
@@ -91,7 +15,7 @@
     <div id="customAudioPlayer">
         <button id="playBtn">Играть</button>
         <span id="currentTime">00:00</span>
-        <input id="progressBar" type="range" min="0" max="1" step="0.01">
+        <div id="progress"><div class="progress-bar"></div></div>
         <span id="totalDuration">00:00</span>
         <div id="volumeContainer">
             <img id="volumeIcon" src="./assets/images/volume.png" height="30">
