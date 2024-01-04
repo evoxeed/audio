@@ -18,23 +18,33 @@ function insertHTML() {
                 </div>
             </div>
         </div>
-        <nobr>
-            <button class="audio-player" id="audioNext">N</button>&nbsp;-&nbsp;следующая мелодия.
-        </nobr>
-        <nobr>
-            <button class="audio-player" id="audioRnd">R</button>&nbsp;-&nbsp;случайная мелодия.
-        </nobr>
-        <nobr>
-            <button class="audio-player" id="audioExt">E</button>&nbsp;-&nbsp;добавить мелодий.
-        </nobr>
-        <nobr>
-            <button class="audio-player" id="audioIni">S</button>&nbsp;-&nbsp;стандартный набор.
-        </nobr>
+        <div class="audio-player__btn">
+            <nobr>
+                <button class="audio-player" id="audioNext">N</button><span>&nbsp;-&nbsp;следующая мелодия.</span>
+            </nobr>
+            <nobr>
+                <button class="audio-player" id="audioRnd">R</button><span>&nbsp;-&nbsp;случайная мелодия.</span>
+            </nobr>
+            <nobr>
+                <button class="audio-player" id="audioExt">E</button><span>&nbsp;-&nbsp;добавить мелодий.</span>
+            </nobr>
+            <nobr>
+                <button class="audio-player" id="audioIni">S</button><span>&nbsp;-&nbsp;стандартный набор.</span>
+            </nobr>
+        </div>
+        <div class="audio-player__description">
+               <span>N &nbsp;-&nbsp;следующая мелодия.</span>
+               <span>R &nbsp;-&nbsp;случайная мелодия.</span>
+               <span>E &nbsp;-&nbsp;добавить мелодий.</span>
+               <span>S &nbsp;-&nbsp;стандартный набор.</span>
+            </div>
     </fieldset>
     `;
-
-    let audioSections = document.querySelector('.audio');
-    audioSections.innerHTML += htmlScript;
+    let audioHtml = document.createElement(`div`)
+    audioHtml.innerHTML = htmlScript
+    let audioSections = document.querySelector('audio');
+    audioSections.before(audioHtml);
+    audioSections.parentNode.removeChild(audioSections)
 }
 
 function handleAudio() {
@@ -144,7 +154,7 @@ function handleAudio() {
         let S = audioTracks[trackNumber];
         if (S !== undefined) {
             audioPlayer.src = S;
-            // audioPlayer.play();
+            audioPlayer.play();
             console.log("МУЗЫКА: " + trackNumber + ") " + audioPlayer.src);
         } else {
             console.log("МУЗЫКА: " + trackNumber + " неопределено!!!");
